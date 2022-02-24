@@ -1,0 +1,92 @@
+
+*{
+    padding:0;
+    margin:0;
+    font-family: Helvetica;
+    box-sizing:0;
+}
+body{
+    background-image: url('https://blog.shift4shop.com/hubfs/iStock-1029141490-1.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: new time roman;
+}
+
+h1{
+    font:40px;
+    color: white;
+    margin-top:100px;
+}
+p{
+    font-size: 17px;
+    color:white;
+}
+h3{
+    font-size: 25px;
+    color:black;
+    float:right;
+    margin-top:20px;
+}
+.leftCol{
+    margin-top:140px;
+    box-shadow:-1px 1px 60px 10px black;
+    background:rgba(0,0,0,0.4);
+}
+
+.rightCol{
+    background:white;
+    margin-top: 25px !important;
+    margin-bottom: 20px;
+    color:black;
+}
+
+.label{
+    font-weight:normal;
+    margin-top:15px;
+    color:white;
+    font-size: 19px;
+}
+
+.form-control{
+    background:rgba(231, 223, 223, 0.918);
+    border-radius: 0px;
+    font-size:18px;
+    margin-top:15px;
+    height:40px;
+    color:black;
+}
+
+.form-control:hover{
+    border:0.3px solid black;
+}
+span i{
+    font-size: 25px;
+    color:black;
+}
+input[type="checkbox"]{
+    margin: top 15px;
+    width:15px;
+    height:15px;
+}
+input[type="submit"]{
+    background: black;
+    color:white;
+}
+
+small{
+    font-size:18px;
+    color:white;
+}
+.alert{
+	background:#f1f1f1 !important;
+	border:none !important;
+	color:red !important;
+	top:0 !important;
+	bottom:30px !important;
+}
+ 
+    
+    
+    
+    
+ 

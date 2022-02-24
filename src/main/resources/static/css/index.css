@@ -1,0 +1,61 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing:0;
+    text-decoration:none !important;
+}
+.main{
+    background:url(https://thumbs.dreamstime.com/b/greek-food-background-traditional-different-dishes-top-view-close-up-143835841.jpg)no-repeat;
+    background-size: cover;
+    height:100vh;
+    background-position: 50%;
+    width:100%;
+}
+.main h1{
+    font-size: 4rem;
+    font-weight:700;
+}
+.btn1{
+    height:40px;
+    width:35%;
+    border:none;
+    outline:none;
+    background-color:rgb(248,26,92);
+    color:white;
+    font-weight:700;
+    border-radius: 60px;
+}
+.btn1:hover{
+    background-color: rgb(241, 95, 139);
+    transition: 0.5s;
+}
+h1{
+    font-weight: 700;
+}
+.card{
+	background:rgb(220,220,220);
+}
+.card img{
+	border-radius:20px;
+}
+.card{
+	transistion:transform 0.5s;
+}
+.card:hover{
+/*     box-shadow: -3px -1px 25px 12px rgba(0,0,0,0.45); */
+/*     -webkit-box-shadow: -3px -1px 25px 12px rgba(0,0,0,0.45); */
+/*     -moz-box-shadow: -3px -1px 25px 12px rgba(0,0,0,0.45); */
+/*     transition:0.5s; */
+    transform:translateY(-5px);
+    cursor:pointer;
+}
+
+.contact .container .py-5{
+	background:#e2e2e2;
+}
+a{
+	text-decoration:none;
+	color:black;
+}
+
+

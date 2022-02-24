@@ -1,0 +1,51 @@
+<li class="nav-item">
+					<!-- <div sec:authorize=hasAuthority("ADMIN")>  -->
+			 			<a class="nav-link" href="#" th:href="@{'/Customer/'}">View customers</a><br><br>
+					</div>
+				</li>
+
+				<li class="nav-item">
+					<!-- <div sec:authorize=hasAuthority("ADMIN")>  -->
+			 			<a class="nav-link" href="#" th:href="@{'/Shop/'}">View shops</a><br><br>
+					</div>
+				</li>
+				
+				
+				
+				 <li class="nav-item" sec:authorize="isAuthenticated()">
+					<div sec:authorize=hasAuthority("CUSTOMER")>
+						 <a class="nav-link" href="#" th:href="@{/Customer/account}" sec:authentication="principal.username"></a> 
+						 <span sec:authentication="principal.authorities"></span> 
+					</div>
+				</li>
+				
+				<li class="nav-item" sec:authorize="isAuthenticated()">
+					<div sec:authorize=hasAuthority("SHOP")> -->
+						<!-- <a class="nav-link" href="#" th:href="@{/Shop/account}" sec:authentication="principal.username"></a> 
+						<span sec:authentication="principal.authorities"></span> -->
+					</div>
+				</li>
+				
+				<!-- <li class="nav-item" sec:authorize="isAuthenticated()">
+					<div sec:authorize=hasAuthority("SHOP")>  -->
+			 			<a class="nav-link" href="#" th:href="@{'/Food/newMenu/'}">new food</a>
+					</div>
+				</li>
+
+				<!-- <li class="nav-item" sec:authorize="isAuthenticated()"> -->
+					<a class="nav-link" href="#">
+						<form th:action="@{/logout}" method=POST>
+							<input type="submit" value="Sign out" />
+						</form>
+					</a>
+				</li>
+				
+				
+				
+				
+				
+				
+				Email eatersonline12@gmail.com
+				password  qwertkey
+				
+				

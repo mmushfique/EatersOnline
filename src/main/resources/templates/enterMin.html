@@ -1,0 +1,90 @@
+
+  <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin DASHBOARD</title>
+	<link rel="stylesheet" type="text/css" href="../static/signupCustomer.css"  th:href="@{/css/signupCustomer.css}"/>
+	<link rel="stylesheet" type="text/css" href="../static/css/fragments.css" th:href="@{/css/fragments.css}" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Rubik:ital@1&display=swap" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+<style>
+body{
+	background:url(/img/bgDeposit.png);
+}
+  .modelBg{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.2);
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+    .model{
+    width:25%;
+      margin:auto;
+      color:black;
+      background-color: #F5F6FA;
+    }
+  </style>
+</head>
+<body>
+    <div th:replace="fragments :: nav2"></div>
+    
+    
+    <script>
+    
+    window.onload = function() {
+    	document.getElementsByClassName("modelBg")[0].classList.remove("d-none");
+    };
+
+    </script>
+    
+    
+    <div class="modelBg d-none">
+  <div class="model">
+   <div class="modal-header">
+        <h5 class="modal-title">Select Quantities</h5>
+        <button type="button" class="close"  onclick='javascript:window.location.href = "/Customer/";'>
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+	 <form action="/Bill/time" method="post">
+                   
+                  
+                   <div class="row">
+                        <div class="col-10">
+                        Enter the estimated time to prepare the food
+                          <input type="number" name="time" />
+                        </div>
+                        
+                    </div>
+
+               
+
+       <div class="modal-footer">
+        <input type="button" class="btn btn-secondary"  onclick='javascript:window.location.href = "/Shop/myFood/";' value="close" />
+        <input type="submit" class="btn btn-primary" value="Send email" />
+      </div>
+      </form>
+   </div>
+      
+</div>
+
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

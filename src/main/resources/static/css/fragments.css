@@ -1,0 +1,89 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing:0;
+}
+.navbar{
+	background-color:white;
+}
+.navbar-brand{
+    font-size:2rem;
+    color:black;
+    font-family: 'Lobster', cursive;
+}
+.navbar-brand:hover{
+    color:black;
+}
+.nav-link{
+    margin-right:10px;
+    margin-left: 10px;
+    color:black !important;
+    font-family: 'Rubik', sans-serif;
+    text-transform: uppercase;
+}
+.nav-link:hover{
+    color:black;
+}
+
+.search{
+    height:40px;
+    width:80%;
+    border-radius: 60px;
+    outline:none;
+    margin-right: -35px;
+    font-family: 'Rubik', sans-serif;
+    border:2px solid rgb(248,26,92);
+}
+.btn0{
+    height:40px;
+    width:40%;
+    outline:none;
+    border:none;
+    background:rgb(248,26,92);
+    color:white;
+    border-radius: 60px;
+    font-weight: 700px;
+    font-family: 'Rubik', sans-serif;
+}
+
+
+
+/*Footer*/
+.news{
+    background-color: black;
+    color: white;
+}
+.btn2{
+    height: 45px;
+    width:100px;
+    background-color: white;
+    border:2px solid white;
+    font-weight: 600;
+}
+
+#log{
+	background:none;
+	border:none;
+}
+
+.news input{
+    height:45px;
+    width:55%;
+    outline:none;
+    background-color: black;
+    color: white;
+    margin-top: 20px;
+}
+.news::placeholder{
+    color: white;
+}
+.news p{
+    margin:0;
+}
+.fab{
+    font-size:2.5rem;
+    cursor:pointer;
+    padding-right: 5px;;
+}
+
+

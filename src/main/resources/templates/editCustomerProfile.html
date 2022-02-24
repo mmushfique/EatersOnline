@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Edit Profile</title>
+<link rel="stylesheet" type="text/css"
+	href="../static/css/fragments.css" th:href="@{/css/fragments.css}" />
+<link rel="stylesheet" type="text/css" href="../static/css/newMenu.css"
+	th:href="@{/css/newMenu.css}" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Lobster&family=Rubik:ital@1&display=swap"
+	rel="stylesheet">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+	<style>
+		body{
+			background:url(data:image/jpeg;base64,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);
+			background-size:cover;		
+		}
+	</style>
+</head>
+
+<body>
+	<div th:replace="fragments :: nav2"></div>
+	<br>
+	<br>
+	<form action="#" th:action="@{/Customer/account/update}" method="post">
+
+		<div class="row">
+			<div class="col-md-6 mx-auto">
+
+			Your deposit
+			<input type="text" th:field="${customer.deposit}" class="form-control" readonly/><br>
+			<label>Enter your phone number</label>
+			<input type="text" th:field="${customer.phone}"
+				name="fname" class="form-control" />
+				
+				Enter the new password<br>
+				<input type="password" th:field="${customer.password}" class="form-control" />
+			<button type="submit" class="btn btn-info">Save</button>
+			</div>
+		</div>
+	</form>
+</html>

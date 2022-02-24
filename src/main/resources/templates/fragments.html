@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+<meta charset="ISO-8859-1">
+<title></title>
+<link rel="stylesheet" type="text/css"
+	href="../static/css/fragments.css" th:href="@{/css/fragments.css}" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Lobster&family=Rubik:ital@1&display=swap"
+	rel="stylesheet">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+</head>
+
+<body>
+	<!--********************************collapsable nav bar *******************************************************-->
+	<div th:fragment="navHome">
+		<nav class="navbar navbar-expand-lg">
+			<div class="container">
+				<a class="navbar-brand" th:href="@{'/'}">EatersOnline</a>
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+					aria-controls="navbarScroll" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"> <i
+						class="fas fa-hamburger"></i>
+					</span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarScroll">
+					<ul class="navbar-nav me-auto my-2 my-lg-0">
+						<li class="nav-item"><a class="nav-link active"
+							th:href="@{'/'}">Home</a></li>
+						<li class="nav-item"><a class="nav-link">ABOUT</a></li>
+						<li class="nav-item dropdown" sec:authorize="!isAuthenticated()"><a
+							class="nav-link dropdown-toggle" id="navbarScrollingDropdown"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">SIGN
+								UP</a>
+
+							<ul class="dropdown-menu"
+								aria-labelledby="navbarScrollingDropdown">
+								<li><a class="dropdown-item"
+									th:href="@{'/Customer/signupCustomer'}">Signup as a new
+										customer</a></li>
+								<li><a class="dropdown-item"
+									th:href="@{'/Shop/createShop'}">Create your restaurant</a></li>
+
+							</ul></li>
+							<li class="nav-item" sec:authorize="!isAuthenticated()"><a class="nav-link" th:href="@{'/login'}">Login</a></li>
+						<li class="nav-item"><a class="nav-link" href="#sec3">CONTACT
+								US</a></li>
+								
+								<!-- Customer--------------------------------------------------------------- -->
+						
+						<li class="nav-item" sec:authorize="isAuthenticated()">
+						<span sec:authorize=hasAuthority("CUSTOMER")> 
+						<a class="nav-link" href="#" th:href="@{'/Customer/account'}" sec:authentication="principal.username"></a>
+						 <!--  <span sec:authentication="principal.authorities"></span> -->
+						</span></li>
+
+						<!-- Admin------------------------------------------------------------------------ -->
+		 				
+						<li>
+							<div sec:authorize=hasAuthority("ADMIN")>
+								<a class="nav-link" href="#" th:href="@{'/Customer/'}">DASHBORAD</a>
+							</div>
+						</li>
+ 
+
+						<!-- Shop----------------------------------------------------------------------------- -->
+ 
+						<li class="nav-item" sec:authorize="isAuthenticated()">
+							<div sec:authorize=hasAuthority("SHOP")>
+								 <a class="nav-link" href="#" th:href="@{'/Shop/myFood/'}">DASHBOARD</a>
+							</div>
+						</li>
+						<li class="nav-item" sec:authorize="isAuthenticated()">
+							<div sec:authorize=hasAuthority("SHOP")>
+								<a class="nav-link" href="#" th:href="@{'/Shop/account'}"
+									sec:authentication="principal.username"></a>
+							</div>
+						</li>
+
+
+						<!-- Logout----------------------------------------------------------------------- -->
+						
+						<li class="nav-item" sec:authorize="isAuthenticated()"><a
+							class="nav-link" href="#">
+								<form th:action="@{'/logout'}" method=POST>
+									<button id="log" type="submit">Logout</button>
+								</form>
+						</a></li>
+					</ul>
+					<form class="d-flex">
+						<input class="px-2 search" type="search" placeholder="Search"
+							aria-label="Search">
+						<button class="btn0" type="submit">Search</button>
+					</form>
+				</div>
+			</div>
+		</nav>
+	</div>
+
+
+	<div th:fragment="nav2">
+		<nav class="navbar navbar-expand-lg">
+			<div class="container">
+				<a class="navbar-brand" th:href="@{'/'}">EatersOnline</a>
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+					aria-controls="navbarScroll" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"> <i
+						class="fas fa-hamburger"></i>
+					</span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarScroll">
+					<ul class="navbar-nav me-auto my-2 my-lg-0">
+
+						<!-- Home----------------------------------- -->
+						<li class="nav-item"><a class="nav-link active"
+							th:href="@{'/'}">Home</a></li>
+
+
+						<!-- Customer--------------------------------------------------------------- -->
+						
+						<li class="nav-item" sec:authorize="isAuthenticated()">
+						<span sec:authorize=hasAuthority("CUSTOMER")> 
+						<a class="nav-link" href="#" th:href="@{'/Customer/account'}" sec:authentication="principal.username"></a>
+						 <!--  <span sec:authentication="principal.authorities"></span> -->
+						</span></li>
+
+						<!-- Admin------------------------------------------------------------------------ -->
+		 				
+						<li>
+							<div sec:authorize=hasAuthority("ADMIN")>
+								<a class="nav-link" href="#" th:href="@{'/Customer/'}">DASHBORAD</a>
+							</div>
+						</li>
+ 
+
+						<!-- Shop----------------------------------------------------------------------------- -->
+ 
+						<li class="nav-item" sec:authorize="isAuthenticated()">
+							<div sec:authorize=hasAuthority("SHOP")>
+								 <a class="nav-link" href="#" th:href="@{'/Shop/myFood/'}">DASHBOARD</a>
+							</div>
+						</li>
+						<li class="nav-item" sec:authorize="isAuthenticated()">
+							<div sec:authorize=hasAuthority("SHOP")>
+								<a class="nav-link" href="#" th:href="@{'/Shop/account'}"
+									sec:authentication="principal.username"></a>
+							</div>
+						</li>
+						<li class="nav-item" sec:authorize="isAuthenticated()">
+							<div sec:authorize=hasAuthority("SHOP")>
+								<form id="formName"method='post' action='/Shop/state'>
+ 						<!-- <input type="checkbox" name="checkbox" onChange="submit()" th:checked="${session.status}"/> 
+ 						<input id="chbk" type="checkbox" name="checkbox" onChange="submit()" th:checked="${session.status}">-->
+							  <div class="form-check form-switch">
+							    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="checkbox" onChange="submit()" th:checked="${session.status}">
+							    <label class="form-check-label nav-link" for="flexSwitchCheckChecked">On/Off</label>
+ 								</div>
+ 								</form>
+							</div>
+						</li>
+				
+				<script>
+					$("#formname").submit();
+					$(document).ready(function(){
+					    $("#formname").on("change", "input:checkbox", function(){
+					        $("#formname").submit();
+					    });
+					});
+					
+					</script>
+	
+
+
+						<!-- Logout----------------------------------------------------------------------- -->
+						
+						<li class="nav-item" sec:authorize="isAuthenticated()"><a
+							class="nav-link" href="#">
+								<form th:action="@{'/logout'}" method=POST>
+									<button id="log" type="submit">Logout</button>
+								</form>
+						</a></li>
+					</ul>
+
+				</div>
+			</div>
+		</nav>
+	</div>
+
+<!-- shopSidenav------------------------------------------------------- -->
+<div th:fragment="shopSidenav">
+<ul class="nav-links">
+        <li>
+          <a href="#" class="active"  th:href="@{'/Shop/myFood'}">
+            <i class='bx bx-grid-alt' ></i>
+            <span class="links_name">Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" th:href="@{'/Shop/myFood'}">
+            <i class='bx bx-box' ></i>
+            <span class="links_name">Menus</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" th:href="@{'/Bill/myOrders'}">
+            <i class='bx bx-list-ul' ></i>
+            <span class="links_name">Order list</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="#" th:href="@{'/Food/newMenu'}">
+            <i class='bx bx-coin-stack' ></i>
+            <span class="links_name">New menu</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" th:href="@{'/Bill/allOrders'}">
+            <i class='bx bx-book-alt' ></i>
+            <span class="links_name">All order</span>
+          </a>
+        </li>
+ 
+
+        <li>
+          <a href="#" th:href="@{'/Shop/account'}">
+            <i class='bx bx-cog' ></i>
+            <span class="links_name">Setting</span>
+          </a>
+        </li>
+        
+        
+        <li class="log_out" sec:authorize="isAuthenticated()">
+          <a href="#">
+            <i class='bx bx-log-out'></i>
+            <span class="links_name">
+			<form th:action="@{'/logout'}" method=POST>
+					<button style="background:none;border:none;color:white" type="submit">Logout</button>
+			</form>
+</span>
+          </a>
+        </li>
+      </ul>
+</div>
+
+<!-- adminSidenav------------------------------------------------------- -->
+<div th:fragment="adminSidenav">
+<ul class="nav-links">
+        <li>
+          <a href="#" class="active"  th:href="@{'/Shop/'}">
+            <i class='bx bx-grid-alt' ></i>
+            <span class="links_name">Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" th:href="@{'/Shop/'}">
+            <i class='bx bx-box' ></i>
+            <span class="links_name">Shop</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" th:href="@{'/Customer/'}">
+            <i class='bx bx-list-ul' ></i>
+            <span class="links_name">Customer</span>
+          </a>
+        </li>
+
+
+        <li>
+          <a href="#" >
+            <i class='bx bx-cog' ></i>
+            <span class="links_name">Setting</span>
+          </a>
+        </li>
+        
+        
+        <li class="log_out" sec:authorize="isAuthenticated()">
+          <a href="#">
+            <i class='bx bx-log-out'></i>
+            <span class="links_name">
+			<form th:action="@{'/logout'}" method=POST>
+					<button style="background:none;border:none;color:white" type="submit">Logout</button>
+			</form>
+</span>
+          </a>
+        </li>
+      </ul>
+</div>
+	<!-- *****************************Footer******************************  -->
+	<div th:fragment="footer">
+		<section class="news py-5">
+			<div class="container py-5">
+				<div class="row">
+					<div class="col-lg-9 m-auto text-center">
+						<h1>Join our society</h1>
+						<input type="text" class="px-3" placeholder="Enter your email">
+						<button class="btn2">Submit</button>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-11">
+						<div class="row">
+							<div class="col-lg-3 py-3">
+								<h5 class="pb-3">CUSTOMER CARE</h5>
+								<p>Regular</p>
+								<p>On Time</p>
+								<p>Always</p>
+							</div>
+							<div class="col-lg-3 py-3">
+								<h5 class="pb-3">CUSTOMER CARE</h5>
+								<p>Regular</p>
+								<p>On Time</p>
+								<p>Always</p>
+							</div>
+							<div class="col-lg-3 py-3">
+								<h5 class="pb-3">CUSTOMER CARE</h5>
+								<p>Regular</p>
+								<p>On Time</p>
+								<p>Always</p>
+							</div>
+							<div class="col-lg-3 py-3">
+								<h5 class="pb-3">CUSTOMER CARE</h5>
+								<span><i class="fab fa-facebook"></i></span> <span><i
+									class="fab fa-instagram"></i></span> <span><i
+									class="fab fa-twitter"></i></span> <span><i
+									class="fab fa-google-plus"></i></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<hr>
+				<p class="text-center">Copyright 2021 All rights reserved | This
+					is made by Mushfique</p>
+			</div>
+		</section>
+	</div>
+	
+
+</body>
+</html>

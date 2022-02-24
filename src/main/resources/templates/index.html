@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="../static/css/index.css" th:href="@{/css/index.css}" />
+<link rel="stylesheet" type="text/css" href="../static/css/fragments.css" th:href="@{/css/fragments.css}" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Rubik:ital@1&display=swap" rel="stylesheet">
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	
+	
+	
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<title>HOME</title>
+</head>
+<style>
+  .modelBg{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.2);
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+    .model{
+    width:25%;
+      margin:auto;
+      color:#1E90FF;
+      background-color: white;
+    }
+  </style>
+<body>
+
+	<div th:replace="fragments :: navHome"></div>
+  <script th:inline="javascript">
+/*<![CDATA[*/
+
+    var flag = [[${session.test}]]; //Your Thymleaf variable
+    var bill = [[${session.invoice}]];
+    window.onload = function() {
+    	if(flag==1){
+        	var s="The shop you ordered is closed now.\nPlease order from another shop\n Sorry for your inconvenience";	
+        	document.getElementById("msg").innerHTML = s;
+           	show();
+           }
+        	if(flag==2){
+        		var s="You have ordered more than your deposit.\n Please check your deposit and order again";
+        		document.getElementById("msg").innerHTML = s;
+        		show();
+        	}
+        	if(bill!=null){
+        		document.getElementById("msg").innerHTML =bill;
+    			show();
+        	}
+    };
+    
+    
+    const show=()=>{
+        document.getElementsByClassName("modelBg")[0].classList.remove("d-none");
+      }
+    
+
+/*]]>*/
+</script>
+
+
+
+<div class="modelBg d-none">
+  <div class="model">
+   <div class="modal-header">
+        <h5 class="modal-title">Message</h5>
+        <button type="button" class="close" onclick='javascript:document.getElementsByClassName("modelBg")[0].classList.add("d-none")' aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+  		 <div class="modal-body">
+        <p id="msg">Modal body text goes here.</p>
+      </div>
+
+       <div class="modal-footer">
+       <form th:action="@{/Bill/deleteSession}"  method="post">
+        <input type="submit" class="btn btn-secondary"  onclick='javascript:document.getElementsByClassName("modelBg")[0].classList.add("d-none")' value="close" />
+        </form>
+      </div>
+   </div>
+      
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- top part -->
+	<section class="main">
+		<div class="container py-5">
+			<div class="row py-4">
+				<div class="col-lg-7 pt-5 text-center">
+					<h1 class="pt-5">Good FOOD</h1>
+					<h1>Good MOOD</h1>
+					<button class="btn1 mt-3" href="#sec1">Find more food</button>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- top part END -->
+
+	<!-- New dishes -->
+	<section class="product" id="#sec1">
+		<div class="container">
+			<div class="row py-5">
+				<div class="col-lg-5 m-auto text-center">
+					<h1>New dishes</h1>
+					<h6>Be healthy organic food</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-3 text-center" th:each="food: ${listFood}">
+					<span hidden id="${food.id}"></span>
+					<a th:href="@{'Food/view/' + ${food.id}}">
+					<div class="card border-0 bg-light" >
+						<div class="cardbody">
+						
+						
+					 <img th:src="@{${food.ImagePath}}" class="img-fluid" > 	
+					<!--  	<img src="/food-images/10/2.jpg">-->
+						</div>
+
+						<h5 th:text="${food.shopusername}"></h5>
+						<h6 th:text="${food.foodname}"></h6>
+						<p th:text="${food.price}"></p>
+					</div>
+					</a>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-6 text-center m-auto">
+					<button class="btn1">Click for more</button>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- New dishes END-->
+
+
+
+
+
+
+
+
+	<!--Usual dishes-->
+	<section class="about">
+		<div class="container">
+			<div class="row py-5">
+				<div class="col-lg-8 m-auto text-center">
+					<h1>Welcome to our Eaters online</h1>
+					<h6 style="color: red">Be healthy</h6>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-3 text-center" th:each="food: ${listFood}">
+					<div class="card border-0 bg-light" th:href="@{'/Food/view/' + ${food.id}}">
+						<span hidden id="${food.id}}"></span>
+						<div class="cardbody"->
+							<img
+								src="https://cdn.theculturetrip.com/wp-content/uploads/2015/11/043_nugaGamaNightJPG1.jpg"
+								class="img-fluid" alt="">
+						</div>
+					</div>
+					<h5 th:text="${food.shopusername}"></h5>
+					<h6 th:text="${food.foodname}"></h6>
+					<p th:text="${food.price}"></p>
+				</div>
+			</div>
+
+		</div>
+	</section>
+	<!--Usual dishes END-->
+
+	<!--Restaurants-->
+	<section class="shop">
+		<div class="container">
+			<div class="row py-5">
+				<div class="col-lg-8 m-auto text-center">
+					<h1>Restaurants</h1>
+					<h6 style="color: red">Superior places</h6>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-3 text-center" th:each="food: ${listFood}">
+					<div class="card border-0 bg-light" id="${food.id}}">
+						<span hidden id="${food.id}}"></span>
+						<div class="cardbody"->
+							<img
+								src="https://www.yum.com/wps/wcm/connect/yumbrands/218eb601-35d8-4b34-aab0-61fe412fce51/Sandwich+Hero+1200x667.jpg?MOD=AJPERES&CACHEID=ROOTWORKSPACE.Z18_2Q82H202O02550QCJUO2J60000-218eb601-35d8-4b34-aab0-61fe412fce51-nrtBMoj"
+								class="img-fluid" alt="">
+						</div>
+					</div>
+					<h5 th:text="${food.shopusername}"></h5>
+					<h6 th:text="${food.foodname}"></h6>
+					<p th:text="${food.price}"></p>
+				</div>
+			</div>
+	</section>
+	<!--Restaurants END-->
+
+	<!-- Contact us page................................................. -->
+	<section class="contact py-5" id="sec3">
+		<div class="container py-5">
+			<div class="row">
+				<div class="col-lg-5 m-auto text-center">
+					<h1>Contact Us</h1>
+					<h6 style="color: red;">Always be in touch with us</h6>
+				</div>
+			</div>
+			<div class="row py-5">
+				<div class="col-lg-5 m-auto">
+					<h6>Location</h6>
+					<p>Colombo 05 0911 First Cross Street</p>
+
+					<h6>Phone</h6>
+					<p>035 9254 962</p>
+
+					<h6>Email</h6>
+					<p>mush@gmail.com</p>
+				</div>
+				<div class="col-lg-7">
+					<div class="row">
+						<div class="col-lg-6">
+							<input type="text" class="form-control bg-light"
+								placeholder="First name">
+						</div>
+						<div class="col-lg-6">
+							<input type="text" class="form-control bg-light"
+								placeholder="Last name">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-12 py-3">
+							<textarea name="" id="" cols="10" rows="5"
+								class="form-control bg-light" placeholder="Enter your comments"></textarea>
+						</div>
+					</div>
+					<button class="btn1">Submit</button>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Contact us page END................................................. -->
+
+<div th:replace="fragments :: footer"></div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	
+	<!-- Optional JavaScript; choose one of the two! -->
+
+	<!-- Option 1: Bootstrap Bundle with Popper -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+
+	<!-- Option 2: Separate Popper and Bootstrap JS -->
+	<!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+
+</body>
+</html>
